@@ -1,0 +1,22 @@
+{
+	"id": "4aae883a-4c74-4b8e-9ac1-0a0afbac3fb2",
+	"name": "User Auth API - Local",
+	"values": [
+		{
+			"key": "base_url ",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"color": null,
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2026-06-27T18:37:41.131Z",
+	"_postman_exported_using": "Postman/12.16.4"
+}
