@@ -17,6 +17,43 @@ The project was developed as part of my backend development learning journey, wi
 
 ---
 
+## Local Setup
+
+### Prerequisites
+- Node.js v18 or above
+- MongoDB installed locally
+- npm v9 or above
+
+### Steps
+
+1. Clone the repository
+```bash
+   git clone https://github.com/Harshavardhan3535/user-auth-api.git
+   cd user-auth-api
+```
+
+2. Install dependencies
+```bash
+   npm install
+```
+
+3. Create environment file
+```bash
+   cp .env.example .env
+```
+   Open `.env` and fill in your values.
+
+4. Start development server
+```bash
+   npm run dev
+```
+
+5. Server runs at `http://localhost:5000`
+
+6. Import `UserAuthAPI.postman_collection.json` into Postman to test all endpoints
+
+---
+
 # ✨ Features
 
 - User Registration
@@ -45,6 +82,17 @@ The project was developed as part of my backend development learning journey, wi
 - **Cloud Database:** MongoDB Atlas
 - **API Testing:** Postman
 - **Version Control:** Git & GitHub
+
+---
+
+## Security Features
+- Passwords hashed with bcrypt (cost factor 10)
+- JWT access tokens expire in 15 minutes
+- Refresh tokens stored in httpOnly cookies (XSS protection)
+- Refresh tokens persisted in DB — enables real logout
+- Rate limiting on login endpoint (10 requests per 15 minutes)
+- Input validation on all endpoints
+- Role-Based Access Control (admin/user)
 
 ---
 
