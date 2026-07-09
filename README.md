@@ -17,6 +17,62 @@ The project was developed as part of my backend development learning journey, wi
 
 ---
 
+## System Architecture
+
+![System Architecture](assets/architecture.png)
+
+---
+
+### Architecture Overview
+
+                         +----------------------+
+                         |      Client          |
+                         |   Postman / Browser  |
+                         +----------+-----------+
+                                    |
+                                    | HTTPS Request
+                                    v
+                         +----------------------+
+                         |        Render        |
+                         |   Cloud Deployment   |
+                         +----------+-----------+
+                                    |
+                                    v
+                   +--------------------------------------+
+                   |         Express.js REST API          |
+                   |  Auth Routes • User Routes • Admin   |
+                   +----------------+---------------------+
+                                    |
+                      +-------------+--------------+
+                      |                            |
+                      v                            v
+            +------------------+        +----------------------+
+            | JWT Authentication|        | RBAC Authorization  |
+            | Access & Refresh  |        | Role Verification   |
+            +---------+---------+        +----------+-----------+
+                      \                      /
+                       \                    /
+                        +--------+---------+
+                                 |
+                                 v
+                      +----------------------+
+                      |  Controllers / DAO   |
+                      |   Business Logic     |
+                      +----------+-----------+
+                                 |
+                                 v
+                      +----------------------+
+                      |      Mongoose        |
+                      +----------+-----------+
+                                 |
+                                 v
+                      +----------------------+
+                      |    MongoDB Atlas     |
+                      |    Cloud Database    |
+                      +----------------------+
+
+---
+
 ## Local Setup
 
 ### Prerequisites
@@ -103,15 +159,38 @@ user-auth-api/
 │
 ├── src/
 │   ├── config/
+│   │   └── db.js
 │   ├── controllers/
+│   │   └── authController.js
 │   ├── middlewares/
+│   │   ├── authMiddleware.js
+│   │   └── roleMiddleware.js
 │   ├── models/
+│   │   └── User.js
 │   ├── routes/
+│   │   ├── authRoutes.js
+│   │   └── protectedRoutes.js
 │   └── utils/
+│       └── tokenUtils.js
 │
+├── assets/
+│   ├── architecture.png
+│   ├── health-check.png
+│   ├── register.png
+│   ├── login.png
+│   ├── profile.png
+│   ├── access-denied.png
+│   └── postman-collection.png
+│
+├── Postman/
+│   ├── UserAuthAPI.postman_collection.json
+│   └── UserAuthAPI.postman_environment.json
+│
+├── .env.example
+├── .gitignore
 ├── package.json
+├── package-lock.json
 ├── server.js
-├── .env
 └── README.md
 ```
 
@@ -190,6 +269,28 @@ Then execute the collection against the deployed API.
 | GET | /api/user/profile | User / Admin | Retrieve authenticated user's profile |
 | GET | /api/admin/users | Admin | Retrieve all users |
 | DELETE | /api/admin/users/:id | Admin | Delete a user |
+
+---
+
+## Screenshots
+
+### Health Check
+![Health Check](assets/health-check.png)
+
+### Register
+![Register](assets/register.png)
+
+### Login
+![Login](assets/login.png)
+
+### Profile (Protected Route)
+![Profile](assets/profile.png)
+
+### Access Denied (RBAC)
+![Access Denied](assets/access-denied.png)
+
+### Postman Collection
+![Postman Collection](assets/postman-collection.png)
 
 ---
 
